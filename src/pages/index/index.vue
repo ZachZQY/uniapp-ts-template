@@ -8,8 +8,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Hello')
+import { ref } from "vue";
+import { onLoad } from "@dcloudio/uni-app";
+import { getDataCache } from "@/api/debug/test";
+const title = ref("Hello");
+
+onLoad(async () => {
+  const data_cache = await getDataCache();
+  if (!data_cache) {
+    title.value = "Hello,no data";
+  } else {
+    title.value = data_cache.key;
+  }
+});
 </script>
 
 <style>
