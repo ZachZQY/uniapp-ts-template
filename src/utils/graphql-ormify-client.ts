@@ -52,3 +52,4 @@ export function getHasuraClient(): HasuraGraphqlClient {
 
 // 导出实例（兼容原有代码）
 export const hasuraClient = initializeHasuraClient();
+export default hasuraClient;
