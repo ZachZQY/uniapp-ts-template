@@ -7,6 +7,19 @@
 			}
 		}
 	],
+	"subPackages": [
+		{
+			"root": "subPackages/resource",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "资源列表"
+					}
+				}
+			]
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

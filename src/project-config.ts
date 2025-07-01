@@ -1,9 +1,8 @@
+import graphqlOrmfyClientConfig from "../goc.config";
 export const projectConfig = {
   graphqlOrmifyClient: {
-    endpoint: "https://guide-hasura-graphql.gzdyguide.net/v1/graphql",
-    headers: {
-      "x-hasura-admin-secret": "myadminsecretkey",
-    },
+    endpoint: graphqlOrmfyClientConfig.endpoint,
+    headers: graphqlOrmfyClientConfig.headers,
     debug: true
   },
 };

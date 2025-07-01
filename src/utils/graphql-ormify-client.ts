@@ -23,10 +23,10 @@ function initializeHasuraClient(): HasuraGraphqlClient {
   // 定义监听
   const requestListener: RequestListener = {
     onRequest: (info: RequestLifecycle) => {
-      console.log("request", info);
+      //console.log("request", info);
     },
     onResponse: (info: RequestLifecycle) => {
-      console.log("response", info);
+     // console.log("response", info);
     },
   };
   
