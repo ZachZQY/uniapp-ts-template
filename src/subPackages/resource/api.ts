@@ -1,6 +1,6 @@
-import { hasuraClient } from "@/utils/graphql-ormify-client";
+import { hasuraClient } from "@/config-lib/hasura-graphql-client/hasura-graphql-client";
 import type { Resources } from "@/types/graphql";
-import cacheStore from "@/utils/cache-store";
+import cacheStore from "@/config-lib/cache-store/cache-store";
 export type { Resources };
 
 /**

@@ -1,5 +1,5 @@
-import { hasuraClient } from "@/utils/graphql-ormify-client";
-import type { Resources, Resources_Bool_Exp } from "@/types/graphql";
+import client from "@/config-lib/hasura-graphql-client/hasura-graphql-client";
+import { Resources, Resources_Bool_Exp,Resources_Order_By,Order_By } from "@/types/graphql";
 
 /**
  * 获取资源参数
@@ -29,10 +29,14 @@ export const getResource = async (
       _eq: params?.name,
     },
   };
-  return (await hasuraClient.data<Resources>({
+  const order_by: Resources_Order_By = {
+    category:Order_By.DescNullsLast
+  };
+  return (await client.data<Resources>({
     table: "resources",
     args: {
       where: where as any,
+      order_by: order_by as any,
     },
     data_fields: ["id", "name", "category", "value"],
   })) as Resources | null;
@@ -42,7 +46,7 @@ export const getResource = async (
  * 请求其他api
  */
 export const requestOtherApi = async (): Promise<any> => {
-  return await hasuraClient
+  return await client
     .request({
       method: "GET",
       url: "https://api.example.com/data",

@@ -1,5 +1,5 @@
 type CacheEntry<T> = { data: T; timestamp: number };
-
+import { cacheOptionsConfig } from "./config";
 const staticCache = new Map<string, CacheEntry<any>>();
 
 /**
@@ -21,7 +21,7 @@ function fnv1aHash(str: string): string {
  * @param useCache 是否使用缓存
  * @param forceRefresh 是否强制刷新（覆盖缓存）
  */
-interface CacheOptions {
+ export interface CacheOptions {
   duration?: number; // 缓存时长（毫秒）
   useCache?: boolean; // 是否使用缓存
   forceRefresh?: boolean; // 是否强制刷新（覆盖缓存）
@@ -34,7 +34,7 @@ interface CacheOptions {
  */
 export function cache<T extends (...args: any[]) => Promise<any>>(
   fn: T,
-  options: CacheOptions = {}
+  options: CacheOptions = cacheOptionsConfig
 ): (...args: Parameters<T>) => Promise<Awaited<ReturnType<T>>> {
   const { duration = 5 * 60 * 1000, useCache = true, forceRefresh = false } = options;
   return async (...args: Parameters<T>) => {
@@ -65,7 +65,9 @@ export function clearCache() {
 /**
  * 缓存管理器
  */
-export default {
+const cacheStore = {
   cache,
   clearCache,
+  fnv1aHash,
 };
+export default cacheStore;

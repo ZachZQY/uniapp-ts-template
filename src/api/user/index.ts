@@ -1,6 +1,6 @@
-import { hasuraClient } from "@/utils/graphql-ormify-client";
+import client from "@/config-lib/hasura-graphql-client/hasura-graphql-client";
 import { Users } from "@/types/graphql";
-import cacheStore from "@/utils/cache-store";
+import cacheStore from "@/config-lib/cache-store/cache-store";
 
 /**
  * 获取用户
@@ -13,7 +13,7 @@ export const getUser = cacheStore.cache(async ({
 }: {
   userId?: string;
 }): Promise<Users> => {
-  const user = await hasuraClient.data<Users>({
+  const user = await client.data<Users>({
     table: "users",
     args: {
       where: {
