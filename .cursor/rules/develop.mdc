@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+开发应该严格按照 [README.md](mdc:uniapp-ts-template/README.md) 项目说明文档规范编写

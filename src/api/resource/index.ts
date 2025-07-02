@@ -1,4 +1,4 @@
-import { hasuraClient } from "@//utils/graphql-ormify-client";
+import { hasuraClient } from "@/utils/graphql-ormify-client";
 import type { Resources, Resources_Bool_Exp } from "@/types/graphql";
 
 /**
