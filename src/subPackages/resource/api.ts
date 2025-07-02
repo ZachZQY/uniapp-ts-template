@@ -1,4 +1,4 @@
-import { hasuraClient } from "@/config-lib/hasura-graphql-client/hasura-graphql-client";
+import client from "@/config-lib/hasura-graphql-client/hasura-graphql-client";
 import type { Resources } from "@/types/graphql";
 import cacheStore from "@/config-lib/cache-store/cache-store";
 export type { Resources };
@@ -10,7 +10,7 @@ export type { Resources };
  */
 export const getResourceList = cacheStore.cache(
   async (args: Record<string, any> = {}): Promise<Resources[]> => {
-    return await hasuraClient.datas<Resources>({
+    return await client.datas<Resources>({
       table: "resources",
       args,
       datas_fields: ["id", "name", "description", "created_at", "updated_at"],
