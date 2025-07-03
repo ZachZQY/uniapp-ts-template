@@ -160,7 +160,9 @@ const user = await hasuraClient.data<User>({
 ```ts
 const newUser = await hasuraClient.insert_data_one<User>({
   table: "users",
-  object: { name: "张三", email: "test@example.com" },
+  args:{
+    object: { name: "张三", email: "test@example.com" },
+  },
   data_fields: ["id", "name", "email"],
 });
 ```
@@ -172,7 +174,7 @@ const newUser = await hasuraClient.insert_data_one<User>({
 ```ts
 const newUsers = await hasuraClient.insert_datas<User>({
   table: "users",
-  objects: [{ name: "A" }, { name: "B" }],
+  args:{objects: [{ name: "A" }, { name: "B" }]},
   datas_fields: ["id", "name"],
 });
 ```
@@ -184,8 +186,10 @@ const newUsers = await hasuraClient.insert_datas<User>({
 ```ts
 const updated = await hasuraClient.update_data_by_pk<User>({
   table: "users",
-  pk_columns: { id: "123" },
-  _set: { name: "新名字" },
+  args: {
+    pk_columns: { id: "123" },
+    _set: { name: "新名字" },
+  },
   data_fields: ["id", "name"],
 });
 ```
@@ -197,8 +201,10 @@ const updated = await hasuraClient.update_data_by_pk<User>({
 ```ts
 const updatedList = await hasuraClient.update_datas<User>({
   table: "users",
-  args: { where: { age: { _lt: 18 } } },
-  _set: { status: "未成年" },
+  args: {
+    where: { age: { _lt: 18 } }
+      _set: { status: "未成年" },
+    },
   datas_fields: ["id", "name", "status"],
 });
 ```
@@ -210,7 +216,9 @@ const updatedList = await hasuraClient.update_datas<User>({
 ```ts
 const deleted = await hasuraClient.delete_data_by_pk<User>({
   table: "users",
-  pk_columns: { id: "123" },
+  args:{
+    pk_columns: { id: "123" },
+  },
   data_fields: ["id", "name"],
 });
 ```
@@ -234,10 +242,10 @@ const deletedList = await hasuraClient.delete_datas<User>({
 ```ts
 const { list, aggregate } = await hasuraClient.find<User, any>({
   table: "users",
+  page:1,
+  pageSize:10,
   args: {
     where: { status: { _eq: "激活" } },
-    limit: 10,
-    offset: 0,
   },
   datas_fields: ["id", "name"],
   aggregate_fields: ["count"],
