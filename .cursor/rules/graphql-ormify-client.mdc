@@ -52,3 +52,6 @@ const hasuraClient = new HasuraGraphqlClient({
 
 特别注意：对于部分graphql语句需要传入枚举参数或变量时，生成器构建时是通过判断参数是否为函数来区分的。
 如：graphql语句`order_by:{id:desc}`在js中是不能写成这样的,会报desc未定义，如果写成`order_by:{id:"desc"}`,则gql不符合期待不会执行成功，此时应该写成`order_by:{id:()=>"desc"}`,graphql-ormify-client生成器在遇到函数时会判定为生成不带引号内容，会调用函数后取出结果作为生成的内容片段。
+
+另外：
+config-lib/hasura-graphql-client里面已导出项目配置好的实例，可以直接使用
